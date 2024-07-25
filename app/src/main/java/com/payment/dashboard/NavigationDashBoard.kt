@@ -109,7 +109,7 @@ fun NavigationDashBoard(
                modifier = Modifier.padding(it))
            {
                composable(AllDestinations.HOME){
-                 Home(bb)
+                 Home()
                }
                composable(AllDestinations.EMAILS){
                    Emails()

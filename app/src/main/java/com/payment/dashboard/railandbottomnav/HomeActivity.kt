@@ -62,7 +62,7 @@ class HomeActivity : ComponentActivity() {
                                 }else if (compact){
                                     bb =false
                                 }
-                               Home(bb)
+                               Home()
                             }
                             composable(BottomScreens.MOVIE.route){
                                   Movies()
