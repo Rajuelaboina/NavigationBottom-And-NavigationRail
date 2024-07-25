@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun Home() {
+fun Home(bb: Boolean) {
     Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
               Column {
                   Text(text = "Home Screen")

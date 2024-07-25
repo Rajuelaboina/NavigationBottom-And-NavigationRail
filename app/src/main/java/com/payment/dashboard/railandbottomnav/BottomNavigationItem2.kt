@@ -1,4 +1,4 @@
-package com.example.railandbottomdemo
+package com.payment.dashboard.railandbottomdemo
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -10,6 +10,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.payment.dashboard.R
 
 data class BottomNavigationItem2(
     val label : String ="",

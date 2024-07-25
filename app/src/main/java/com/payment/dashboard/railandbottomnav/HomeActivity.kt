@@ -1,4 +1,4 @@
-package com.example.railandbottomdemo
+package com.payment.dashboard.railandbottomdemo
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -21,11 +21,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.railandbottomdemo.screens.Home
-import com.example.railandbottomdemo.screens.Movies
-import com.example.railandbottomdemo.screens.News
-import com.example.railandbottomdemo.screens.TVShows
-import com.example.railandbottomdemo.ui.theme.RailAndBottomDemoTheme
+import com.payment.dashboard.screens.Home
+import com.payment.dashboard.screens.Movies
+import com.payment.dashboard.screens.News
+import com.payment.dashboard.screens.TVShows
+import com.payment.dashboard.ui.theme.DashBoardTheme
 
 class HomeActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -34,7 +34,7 @@ class HomeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            RailAndBottomDemoTheme {
+            DashBoardTheme {
                 val navController: NavHostController = rememberNavController()
                 val window = calculateWindowSizeClass(activity = this)
                 val compact = window.widthSizeClass == WindowWidthSizeClass.Compact
@@ -100,7 +100,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    RailAndBottomDemoTheme {
+    DashBoardTheme {
         Greeting("Android")
     }
 }

@@ -1,4 +1,4 @@
-package com.example.railandbottomdemo
+package com.payment.dashboard.railandbottomdemo
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.payment.dashboard.R
 
 @Composable
 fun NavigationRailBar(
@@ -46,7 +47,7 @@ fun NavigationRailBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.Menu,
-                    contentDescription = stringResource(id = R.string.menu)
+                    contentDescription = "menu"
                 )
             }
             FloatingActionButton(
@@ -55,7 +56,7 @@ fun NavigationRailBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = stringResource(id = R.string.add)
+                    contentDescription = "add"
                 )
             }
         },

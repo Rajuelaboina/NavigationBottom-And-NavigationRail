@@ -1,4 +1,4 @@
-package com.example.railandbottomdemo
+package com.payment.dashboard.railandbottomdemo
 
 sealed class BottomScreens( val  route: String ){
     object HOME : BottomScreens("Home")

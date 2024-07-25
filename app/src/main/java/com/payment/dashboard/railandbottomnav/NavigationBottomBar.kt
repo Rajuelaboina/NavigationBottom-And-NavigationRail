@@ -1,4 +1,4 @@
-package com.example.railandbottomdemo
+package com.payment.dashboard.railandbottomdemo
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.payment.dashboard.R
 
 
 @Composable

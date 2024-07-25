@@ -2,7 +2,6 @@ package com.payment.dashboard
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.NavigationRail
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -110,7 +109,7 @@ fun NavigationDashBoard(
                modifier = Modifier.padding(it))
            {
                composable(AllDestinations.HOME){
-                 Home()
+                 Home(bb)
                }
                composable(AllDestinations.EMAILS){
                    Emails()
