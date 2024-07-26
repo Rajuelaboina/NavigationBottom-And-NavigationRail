@@ -89,11 +89,11 @@ fun NavigationRailBar(
                          }
                      },
                      colors = NavigationRailItemDefaults.colors(
-                         selectedTextColor = colorResource(id = R.color.purple_700),
+                         selectedTextColor = colorResource(id = R.color.teal_700),
                          selectedIconColor = Color.White,
                          unselectedIconColor = Color.Black,
                          unselectedTextColor = Color.Black,
-                         indicatorColor = colorResource(id = R.color.purple_700)
+                         indicatorColor = colorResource(id = R.color.teal_700)
                      ),
 
                  )

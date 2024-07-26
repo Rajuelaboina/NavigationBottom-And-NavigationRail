@@ -24,7 +24,7 @@ import com.payment.dashboard.screens.Home
 import com.payment.dashboard.ui.theme.DashBoardTheme
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalMaterial3Api::class)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
