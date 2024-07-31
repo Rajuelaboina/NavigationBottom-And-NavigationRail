@@ -76,4 +76,6 @@ dependencies {
     //Material 3
     implementation(libs.material3)
     implementation("androidx.compose.material3:material3-window-size-class:1.2.1")
+    implementation("com.google.accompanist:accompanist-pager:0.35.1-alpha")
+
 }

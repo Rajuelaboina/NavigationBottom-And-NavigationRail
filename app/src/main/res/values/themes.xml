@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.DashBoard" parent="android:Theme.Material.Light.NoActionBar" >
-       <!-- <item name="android:statusBarColor">@color/purple_200</item>
+    <style name="Theme.DashBoard" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- <item name="android:statusBarColor">@color/purple_200</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@color/white</item>-->
-       <!-- <item name="android:statusBarColor">@color/sb</item>-->
+        <!-- <item name="android:statusBarColor">@color/sb</item>-->
         <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>
 </resources>

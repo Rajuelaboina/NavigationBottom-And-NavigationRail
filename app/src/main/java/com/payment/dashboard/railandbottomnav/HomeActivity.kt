@@ -12,6 +12,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Button
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
@@ -48,6 +51,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -80,7 +84,8 @@ class HomeActivity : ComponentActivity() {
                 val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
                 val topBarState = rememberSaveable { (mutableStateOf(true)) }
                 var showMenu by remember { mutableStateOf(false) }
-                var isClicked by remember {  mutableStateOf(false) }
+                var isClicked by remember { mutableStateOf(false) }
+                var openDialog by remember { mutableStateOf(false) }
 
                 Surface(
                     modifier = Modifier
@@ -91,19 +96,19 @@ class HomeActivity : ComponentActivity() {
                     Scaffold(
                         modifier = Modifier,
                         floatingActionButtonPosition = FabPosition.End,
-                       // isFloatingActionButtonDocked = true,
+                        // isFloatingActionButtonDocked = true,
                         floatingActionButton = {
-                           FloatingActionButton(
+                            FloatingActionButton(
                                 //modifier = Modifier.padding(0.dp),
                                 shape = CutCornerShape(10.dp),
-                               backgroundColor = colorResource(id = R.color.purple_200),
-                               elevation = FloatingActionButtonDefaults.elevation(10.dp),
+                                backgroundColor = colorResource(id = R.color.purple_200),
+                                elevation = FloatingActionButtonDefaults.elevation(10.dp),
                                 onClick = {
                                     isClicked = true
                                     //NavigationDashBoard()
                                 },
                                 //containerColor = Color.LightGray
-                               contentColor = Color.White
+                                contentColor = Color.White
                             ) {
                                 Icon(
                                     painter = painterResource(id = R.drawable.baseline_photo_camera_24),
@@ -113,20 +118,20 @@ class HomeActivity : ComponentActivity() {
 
                         },
                         topBar = {
-                            if (topBarState.value){
-                               // CenterAlignedTopAppBar(title = { /*TODO*/ })
+                            if (topBarState.value) {
+                                // CenterAlignedTopAppBar(title = { /*TODO*/ })
                                 TopAppBar(
                                     scrollBehavior = scrollBehavior,
                                     title = { Text(text = stringResource(id = R.string.app_name)) },
-                                   /* navigationIcon = {
-                                        IconButton(onClick = {
-                                            coroutineScope.launch {  }
-                                        },
-                                            content = {
-                                                Icon(painter = painterResource(id = R.drawable.baseline_menu_24) , contentDescription = null )
-                                            }
-                                        )
-                                    },*/
+                                    /* navigationIcon = {
+                                         IconButton(onClick = {
+                                             coroutineScope.launch {  }
+                                         },
+                                             content = {
+                                                 Icon(painter = painterResource(id = R.drawable.baseline_menu_24) , contentDescription = null )
+                                             }
+                                         )
+                                     },*/
                                     /*colors = TopAppBarDefaults.topAppBarColors(
                                         containerColor = MaterialTheme.colorScheme.background,
                                         titleContentColor = MaterialTheme.colorScheme.onPrimary,
@@ -140,8 +145,13 @@ class HomeActivity : ComponentActivity() {
                                         actionIconContentColor = MaterialTheme.colorScheme.onPrimary
                                     ),
                                     actions = {
-                                        IconButton(onClick = {  }) {
-                                            Icon(painterResource(id = R.drawable.baseline_logout_24), contentDescription = "LogOut" )
+                                        IconButton(onClick = {
+                                            openDialog = true
+                                        }) {
+                                            Icon(
+                                                painterResource(id = R.drawable.baseline_logout_24),
+                                                contentDescription = "LogOut"
+                                            )
                                         }
                                         /*IconButton(onClick = {  }) {
                                             Icon(painterResource(id = R.drawable.baseline_email_24), contentDescription = "LogOut" )
@@ -150,21 +160,33 @@ class HomeActivity : ComponentActivity() {
                                             Icon(painterResource(id = R.drawable.baseline_message_24), contentDescription = "LogOut" )
                                         }*/
                                         IconButton(onClick = { showMenu = !showMenu }) {
-                                            Icon(Icons.Default.MoreVert, contentDescription = "More")
+                                            Icon(
+                                                Icons.Default.MoreVert,
+                                                contentDescription = "More"
+                                            )
                                         }
                                         DropdownMenu(
-                                            expanded = showMenu ,
+                                            expanded = showMenu,
                                             onDismissRequest = { showMenu = false },
                                             modifier = Modifier.background(color = Color.White)
                                         ) {
-                                            DropdownMenuItem(onClick = { showMenu = false  }) {
-                                                Icon(painter = painterResource(id = R.drawable.baseline_email_24) , contentDescription = "Email")
+                                            DropdownMenuItem(onClick = { showMenu = false }) {
+                                                Icon(
+                                                    painter = painterResource(id = R.drawable.baseline_email_24),
+                                                    contentDescription = "Email"
+                                                )
                                             }
-                                            DropdownMenuItem(onClick = { showMenu = false  }) {
-                                                Icon(painter = painterResource(id = R.drawable.baseline_movie_24) , contentDescription = "Email")
+                                            DropdownMenuItem(onClick = { showMenu = false }) {
+                                                Icon(
+                                                    painter = painterResource(id = R.drawable.baseline_movie_24),
+                                                    contentDescription = "Email"
+                                                )
                                             }
-                                            DropdownMenuItem(onClick = { showMenu = false  }) {
-                                                Icon(painter = painterResource(id = R.drawable.baseline_message_24) , contentDescription = "Email")
+                                            DropdownMenuItem(onClick = { showMenu = false }) {
+                                                Icon(
+                                                    painter = painterResource(id = R.drawable.baseline_message_24),
+                                                    contentDescription = "Email"
+                                                )
                                             }
 
                                         }
@@ -211,12 +233,36 @@ class HomeActivity : ComponentActivity() {
                 }
                 // Rail
                 if (!compact) {
-                     topBarState.value = false
+                    topBarState.value = false
                     NavigationRailBar(modifier = Modifier, navController)
 
                 }
-                if(isClicked){
+                if (isClicked) {
                     NavigationDashBoard()
+                }
+                if (openDialog) {
+                    AlertDialog(onDismissRequest = {
+                        openDialog = false
+                    },
+                        title = { Text(text = "LogOut") },
+                        text = { Text(text = "Do you Exit the App") },
+
+                        confirmButton = {
+                            Button(onClick = { /*TODO*/ }, shape = RoundedCornerShape(15.dp)
+                            ) {
+                                Text(text = "Yes", color = Color.White)
+                            }
+                        },
+                        dismissButton = {
+                            Button(onClick = { openDialog = false }, shape = RoundedCornerShape(15.dp)
+                            ) {
+                                Text(text = "Cancel", color = Color.White)
+                            }
+
+                        },
+                        shape = CutCornerShape(10.dp),
+                       properties = DialogProperties()
+                    )
                 }
             }
         }
