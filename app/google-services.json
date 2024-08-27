@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "614258572053",
+    "project_id": "dashboard-b54a5",
+    "storage_bucket": "dashboard-b54a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614258572053:android:e949e049227aa6d667871c",
+        "android_client_info": {
+          "package_name": "com.payment.dashboard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuTt4M8sSnkFpJnmFC49FRA_AZ61YWfPU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

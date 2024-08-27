@@ -18,6 +18,7 @@ interface ResidentDao {
    @Query("SELECT * FROM user_table")
      fun getAllUsers():List<UserData>
 
-     @Query("SELECT * FROM resident")
+   // @Query("SELECT * FROM resident LIMIT 5")
+     @Query("SELECT * FROM resident ")
      fun getAllResidents(): List<ResidentCompleteSearchItem>
 }
