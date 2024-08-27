@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "DashBoard"
 include(":app")
- 
+include(":mylibrary")

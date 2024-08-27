@@ -9,7 +9,6 @@ import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Surface
@@ -40,7 +39,10 @@ class ViewPagerActivity : ComponentActivity() {
                         R.drawable.ic_launcher_background,
                         R.drawable.ic_launcher_background,
                         R.drawable.ic_launcher_background,
+                        R.drawable.ic_launcher_background,
                     )
+
+
                  //   val pagerState = rememberPagerState(initialPage = 0,pageCount = {5})
                     // Used Int.MAX_VALUE for infinity scroll
                     val pageCount = Int.MAX_VALUE
@@ -56,7 +58,7 @@ class ViewPagerActivity : ComponentActivity() {
                         .fillMaxWidth()
                         .height(250.dp)) {
                         HorizontalPager(state = pagerState ) { page->
-                            ViewPagerItem(page = page, Color.White,images)
+                          //  ViewPagerItem(page = page, Color.White,images)
                         }
                         viewPagerDotsIndicator(
                             Modifier

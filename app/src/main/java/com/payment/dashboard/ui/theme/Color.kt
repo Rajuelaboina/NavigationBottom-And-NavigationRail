@@ -12,3 +12,4 @@ val Pink40 = Color(0xFF7D5260)
 
 val status = Color(0xFFD0BCFF)
 val surfaceWhite = Color(0xFFFFFFFF)
+val Purple40Light = Color(0xFFE6E0F5)
