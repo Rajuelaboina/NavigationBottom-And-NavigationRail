@@ -1,58 +1,128 @@
 package com.payment.dashboard.screens
 
-import android.util.Log
-import android.widget.NumberPicker
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.MarqueeAnimationMode
+import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material3.BottomSheetDefaults
-import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.gms.maps.StreetViewPanoramaOptions
-import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.MapProperties
-import com.google.maps.android.compose.MapType
-import com.google.maps.android.compose.MapUiSettings
-import com.google.maps.android.compose.Marker
-import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.maps.android.compose.streetview.StreetView
 import com.google.maps.android.ktx.MapsExperimentalFeature
-import com.payment.dashboard.R
+import com.payment.dashboard.SnackBarDeledate
+import com.payment.dashboard.SnackbarState
+import kotlinx.coroutines.launch
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun News() {
-    Column {
+    val scaffoldState: ScaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+    var clickCount by remember { mutableStateOf(0) }
+
+    val snackBarDeledate = SnackBarDeledate()
+    val  snackbarState: SnackbarState = SnackbarState.DEFAULT
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        floatingActionButton = {
+
+            ExtendedFloatingActionButton(
+                onClick = {
+                    // show snackbar as a suspend function
+                    scope.launch {
+                        snackbarHostState.showSnackbar(
+                            "Snackbar # ${++clickCount}",
+                            actionLabel = "Testing"
+                        )
+                       /* snackBarDeledate.showSnackbar(
+                            snackbarState,
+                            "welcome",
+                            "testing",
+                             "actionLabel",
+                                true,
+                               SnackbarDuration.Long,
+
+
+                        )*/
+                    }
+                }
+            ) { Text("Show snackbar") }
+        },
+        content = { innerPadding ->
+            val focusRequester = remember { FocusRequester() }
+            Column(modifier = Modifier.width(50.dp)) {
+                Text(
+                    text = "Test  content",
+                    maxLines = 1,
+                    modifier = Modifier
+
+                        .basicMarquee()
+                )
+                Text(
+                    text = "Body content",
+                    modifier = Modifier
+                        .basicMarquee(
+                        )
+                        //.basicMarquee(animationMode = MarqueeAnimationMode.WhileFocused)
+                        .basicMarquee(animationMode = MarqueeAnimationMode.Immediately)
+                        .focusRequester(focusRequester)
+                        .focusable()
+                        .padding(40.dp)
+                        .fillMaxSize(),
+                    maxLines = 1
+                    //.wrapContentSize()
+                )
+
+                Button(modifier = Modifier.padding(innerPadding) , onClick = {
+                    scope.launch {
+
+                        /*scaffoldState.snackbarHostState.showSnackbar(
+                            message = "This is your message",
+                            actionLabel = "Do something"
+                        )*/
+                        snackbarHostState.showSnackbar(
+                            "Snackbar # ${++clickCount}",
+                            actionLabel = "Do something",
+                            duration = SnackbarDuration.Short,
+                            withDismissAction = true
+
+                        )
+                    }
+                }) {
+                    Text(text = "Snackbar")
+                }
+            }
+
+        }
+    )
+
+
+    //Column {
        /* var status by remember { mutableStateOf(false) }
         var statusValue by remember { mutableStateOf(0) }
         val sheetState = rememberModalBottomSheetState()
@@ -136,9 +206,9 @@ fun News() {
 
 
         )*/
-        MapScreen2()
+        //MapScreen2()
 
-    }
+ //   }
 }
 
 @OptIn(MapsExperimentalFeature::class)

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,6 +50,7 @@ import com.payment.dashboard.database.ResidentDataBase
 import com.payment.dashboard.database.UserData
 import com.payment.dashboard.ui.theme.DashBoardTheme
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LoginActivity : ComponentActivity() {
@@ -79,6 +82,7 @@ class LoginActivity : ComponentActivity() {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val activity = (LocalContext.current as? Activity)
+    var loading by remember { mutableStateOf(false) }
      Box(modifier = Modifier
          .fillMaxSize()
          .padding(top = 250.dp)) {
@@ -144,49 +148,38 @@ class LoginActivity : ComponentActivity() {
                     elevation = ButtonDefaults.buttonElevation(5.dp),
 
                     onClick = {
+                                loading = true
 
                              if (userName.isNotEmpty() && password.isNotEmpty()) {
                                  scope.launch(Dispatchers.IO) {
                                      ResidentDataBase.getInstance(context).residentDao().loginInsert(
                                          UserData(0,userName, password)
                                      )
-
+                                     delay(5000)
+                                     loading = false
                                  }
-                                /* val viewModel = MainViewModal()
-                                 scope.launch(Dispatchers.IO)  {
-                                     ResidentDataBase.getInstance(context).residentDao().insertResident(
-                                         ResidentCompleteSearchItem(
-                                             1982, 202321090,
-                                             "MD"," Ozge Aktas, M.D.",
-                                         "3",
-                                      "",
-                                     "",
-                                     "",
-                                      null,
-                                    null,
-                                      "",
-                                     "",
-                                      "",
-                                     "",
-                                    "83__0202321090.jpg",
-                                     "83__0202321090.jpg",
-                                     "AllergyData__20240223.xlsx",
-                                    "Date(1708718409703)",
-                                     "National Institutes of Health Clinical Center Program",
-                                     "Allergy and Immunology",
-                                     "Bethesda MD",
-                                         )
-                                     )
-                                 }*/
+
+
                                  context.startActivity(Intent(context, MainActivity::class.java))
+                                // loading = false
                              }else if (userName.isEmpty()){
                                  isErroVisible = true
+                                 loading = false
                              }else if (password.isEmpty()){
                                  isPasswordErroVisible = true
+                                 loading = false
                              }
                     }) {
                   Text(text = "Submit")
+
                  
+             }
+             if (loading) {
+                 CircularProgressIndicator(
+                     modifier = Modifier.width(64.dp),
+                     color = MaterialTheme.colorScheme.primary,
+                     trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                 )
              }
          }
      }

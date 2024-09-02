@@ -116,6 +116,7 @@ class MainActivity : ComponentActivity() {
                   /* systemBroadCastReceiver(Intent.ACTION_BATTERY_CHANGED){ batteryStatus ->
                        Log.e("BATTERY STATUS","BATTERY STATUS: "+ batteryStatus)
                    }*/
+
                 }
             }
         }

@@ -1,7 +1,6 @@
 package com.payment.dashboard.screens
 
 import android.os.Build
-import android.os.Message
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,29 +20,21 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.TabRowDefaults.SecondaryIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.payment.dashboard.GroupScreen
 import com.payment.dashboard.HomeScreen
 import com.payment.dashboard.MessageScreen
 import com.payment.dashboard.NotificationScreen
 import com.payment.dashboard.ProfileScreen
-import com.payment.dashboard.R
 import kotlinx.coroutines.launch
-import java.security.MessageDigestSpi
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -99,13 +90,15 @@ fun TabContent(tabData: List<Pair<String, ImageVector>>, pagerState: PagerState)
            HorizontalPager(state = pagerState) { index ->
                when(index){
                    0 -> {
-                       MessageScreen()
+                       HomeScreen()
+
                    }
                    1 -> {
-                       GroupScreen()
+                       MessageScreen()
+
                    }
                    2 -> {
-                       HomeScreen()
+                       GroupScreen()
                    }
                    3 -> {
                        NotificationScreen()

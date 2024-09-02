@@ -11,9 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
@@ -47,14 +44,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.payment.dashboard.NavigationDashBoard
 import com.payment.dashboard.R
-import com.payment.dashboard.screens.Home
 import com.payment.dashboard.screens.Movies
 import com.payment.dashboard.screens.News
 import com.payment.dashboard.screens.TVShows
@@ -236,30 +231,7 @@ class HomeActivity : ComponentActivity() {
                 if (isClicked) {
                     NavigationDashBoard()
                 }
-                if (openDialog) {
-                    AlertDialog(onDismissRequest = {
-                        openDialog = false
-                    },
-                        title = { Text(text = "LogOut") },
-                        text = { Text(text = "Do you Exit the App") },
 
-                        confirmButton = {
-                            Button(onClick = { /*TODO*/ }, shape = RoundedCornerShape(15.dp)
-                            ) {
-                                Text(text = "Yes", color = Color.White)
-                            }
-                        },
-                        dismissButton = {
-                            Button(onClick = { openDialog = false }, shape = RoundedCornerShape(15.dp)
-                            ) {
-                                Text(text = "Cancel", color = Color.White)
-                            }
-
-                        },
-                        shape = CutCornerShape(10.dp),
-                       properties = DialogProperties()
-                    )
-                }
             }
         }
     }
