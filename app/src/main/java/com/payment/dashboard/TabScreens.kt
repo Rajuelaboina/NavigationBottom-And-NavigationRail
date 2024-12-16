@@ -54,7 +54,8 @@ fun MessageScreen() {
 }
 @Composable
 fun GroupScreen() {
-    CenterText(text = "Group")
+   // CenterText(text = "Group")
+    StickyHeadersScreen()
 }
 @SuppressLint("RememberReturnType")
 @Composable

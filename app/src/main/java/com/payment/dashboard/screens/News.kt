@@ -1,12 +1,17 @@
 package com.payment.dashboard.screens
 
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.MarqueeAnimationMode
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Button
@@ -18,6 +23,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -26,11 +32,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.android.gms.maps.StreetViewPanoramaOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.streetview.StreetView
 import com.google.maps.android.ktx.MapsExperimentalFeature
+import com.payment.dashboard.R
 import com.payment.dashboard.SnackBarDeledate
 import com.payment.dashboard.SnackbarState
 import kotlinx.coroutines.launch
@@ -47,7 +58,7 @@ fun News() {
     val snackBarDeledate = SnackBarDeledate()
     val  snackbarState: SnackbarState = SnackbarState.DEFAULT
 
-    Scaffold(
+    Scaffold( modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
 
@@ -75,27 +86,53 @@ fun News() {
         },
         content = { innerPadding ->
             val focusRequester = remember { FocusRequester() }
-            Column(modifier = Modifier.width(50.dp)) {
+            Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "Test  content",
+                    text = "Test  content dfsdfsdfsdsdfsdfssdfsdfdfdf fdsfsdf",
                     maxLines = 1,
                     modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp)
 
                         .basicMarquee()
                 )
                 Text(
-                    text = "Body content",
+                    text = "Body contentv fds bbbbbb bbb ccccccccccccccccc aaaaaaaaaaaaaa",
                     modifier = Modifier
-                        .basicMarquee(
-                        )
+                        .padding(20.dp)
+                        .fillMaxWidth()
+                        //.basicMarquee( )
                         //.basicMarquee(animationMode = MarqueeAnimationMode.WhileFocused)
                         .basicMarquee(animationMode = MarqueeAnimationMode.Immediately)
                         .focusRequester(focusRequester)
                         .focusable()
-                        .padding(40.dp)
-                        .fillMaxSize(),
+                        .padding(0.dp),
                     maxLines = 1
                     //.wrapContentSize()
+                )
+               Image(painter = painterResource(id = R.drawable.img), contentDescription = "",
+                   modifier = Modifier.basicMarquee().padding(20.dp).fillMaxWidth())
+
+                val scrollState = rememberScrollState()
+                var shouldAnimate by remember {
+                    mutableStateOf(true)
+                }
+                var shouldAnimated = false
+                LaunchedEffect(key1 = shouldAnimated){
+                    scrollState.animateScrollTo(
+                        scrollState.maxValue,
+                        animationSpec = tween(10000, 200, easing = CubicBezierEasing(0f,0f,0f,0f))
+                    )
+                    scrollState.scrollTo(0)
+                    shouldAnimated = !shouldAnimated
+                }
+                Text(
+                    text = "AAAAAnnnnnnnnnnnnnnnnnnnncxczxcccccccccccccccccccccccccccccccccccccccccccccccccccccccxczzzzzzzzzzznnnnn",
+                    color = Color.Black,
+                    fontSize = 20.sp,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    modifier = Modifier.horizontalScroll(scrollState, true)
                 )
 
                 Button(modifier = Modifier.padding(innerPadding) , onClick = {

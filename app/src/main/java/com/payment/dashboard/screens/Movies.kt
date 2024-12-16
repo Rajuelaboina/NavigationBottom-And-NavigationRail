@@ -29,10 +29,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.payment.dashboard.AddScheduleScreen
 import com.payment.dashboard.GroupScreen
 import com.payment.dashboard.HomeScreen
-import com.payment.dashboard.MessageScreen
-import com.payment.dashboard.NotificationScreen
 import com.payment.dashboard.ProfileScreen
 import kotlinx.coroutines.launch
 
@@ -94,14 +93,15 @@ fun TabContent(tabData: List<Pair<String, ImageVector>>, pagerState: PagerState)
 
                    }
                    1 -> {
-                       MessageScreen()
-
+                      // MessageScreen()
+                       AddScheduleScreen()
                    }
                    2 -> {
                        GroupScreen()
                    }
                    3 -> {
-                       NotificationScreen()
+                      // NotificationScreen()
+                       Notifications()
                    }
                    4 -> {
                        ProfileScreen()
